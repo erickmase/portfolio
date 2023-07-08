@@ -1,4 +1,4 @@
-# Erick Martinez Sevilla
+# Erick Martinez Sevilla's portfolio
 Hi, welcome to my professional coding portfolio. I have worked in physics and math research in the past. From now on I will be focusing on data science/analysis projects.
 
 Questions? Email me at:
