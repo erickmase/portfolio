@@ -1,4 +1,4 @@
-# Erick Martinez's portfolio
+# My Portfolio
 My professional coding portfolio
 
 Hi, welcome to my portfolio. I have worked in physics and math research in the past. From now on I will be focusing on data science/analysis projects.
