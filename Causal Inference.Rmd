@@ -1,0 +1,229 @@
+---
+title: "Calculating Causal Inference"
+author: "Erick Martinez"
+date: "2023-07-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Construct the gate matrix
+c_m = matrix(c(0.7, 0.3, 0.7, 0.3, 0.7, 0.3, 0, 1), nrow=2, ncol=4)
+rownames(c_m) <- c("0", "1")
+colnames(c_m) <- c("00", "01", "10", "11")
+
+# ------------------------------------------------------------------------------
+# Create all the permutations
+## Define the inputs of each gate {A,B,C,D}
+inputs = c(0,1)
+
+## Permutations of the system {ABCD}
+permutations_micro = expand.grid(inputs, inputs, inputs, inputs)
+
+## Name the elements of the permutations
+colnames(permutations_micro) = c("A", "B", "C", "D")
+rownames(permutations_micro) = c("0000", "1000", "0100", "1100", "0010", "1010", "0110", "1110", "0001", "1001", "0101", "1101", "0011", "1011", "0111", "1111")
+
+# ------------------------------------------------------------------------------
+# Create 16x16 0 matrix "tpm"
+tpm_micro = matrix(0, ncol=16, nrow=16)
+rownames(tpm_micro) = c("0000", "1000", "0100", "1100", "0010", "1010", "0110", "1110", "0001", "1001", "0101", "1101", "0011", "1011", "0111", "1111")
+colnames(tpm_micro) = c("0000", "1000", "0100", "1100", "0010", "1010", "0110", "1110", "0001", "1001", "0101", "1101", "0011", "1011", "0111", "1111")
+
+# ------------------------------------------------------------------------------
+# Do the for loop to calculate the tpm
+for (i in 1:16){                                      ### Rows of the tpm
+  for (j in 1:16){                                    ### Columns of the tpm
+    ## Get the string from state j and put it in t = 1
+    t_1 = paste(permutations_micro[j,], collapse='')
+    
+    ## Parse out the states from t=1 
+    A1 = substr(t_1, 1, 1)
+    B1 = substr(t_1, 2, 2)
+    C1 = substr(t_1, 3, 3)
+    D1 = substr(t_1, 4, 4)
+    
+    ## Calculate the probabilities
+    c_a = c_m[A1, paste(permutations_micro[i, c("C", "D")], collapse='')] ### A1 given C and D of state i (t_0)
+    c_b = c_m[B1, paste(permutations_micro[i, c("C", "D")], collapse='')] ### B1 given C and D of state i (t_0)
+    c_c = c_m[C1, paste(permutations_micro[i, c("A", "B")], collapse='')] ### C1 given C and D of state i (t_0)
+    c_d = c_m[D1, paste(permutations_micro[i, c("A", "B")], collapse='')] ### D1 given C and D of state i (t_0)
+    
+    ## tpm element calculation
+    tpm_micro[i, j] = c_a * c_b * c_b * c_d
+  }
+}
+
+# Plot the image
+shades = colorRampPalette(c("white", "black"))(100)  ### Define the colors
+
+image(tpm_micro,zlim = c(0, 1), col=shades, axes=FALSE , xlab="t-1 states", ylab="t0 states", lwd=2) ### Create the image
+
+# ------------------------------------------------------------------------------
+# Calculate the determinism coefficients
+determinism_coeff_micro = rep(0,16)
+
+for (i in 1:nrow(tpm_micro)){
+  ij_element = rep(0, 16)
+  for (j in 1:ncol(tpm_micro)) {
+    ij_element[j] = tpm_micro[i,j] * log2(nrow(tpm_micro)*tpm_micro[i,j])
+  }
+  determinism_coeff_micro[i] =  sum(ij_element)/log2(nrow(tpm_micro))         ### Here i use nrow(tpm) instead of just 16 to "generalize"
+}
+
+determinism_coeff_micro = determinism_coeff_micro[!is.na(determinism_coeff_micro)]
+# ------------------------------------------------------------------------------
+# Calculate the degeneracy coefficients
+degeneracy_coeff_micro = rep(0,16)
+p_sf_micro = rep(0,16)
+
+## This loop calculates the unconditional probabilities of getting the state S_F
+for (j in 1:ncol(tpm_micro)){
+  p_sf_micro[j] = colSums(tpm_micro)[j]/ncol(tpm_micro)
+}
+
+## This loop calculates the degeneracy coefficients
+for (i in 1:nrow(tpm_micro)){
+  degeneracy_coeff_micro[i] = (rowSums(tpm_micro)[i]) * log2(nrow(tpm_micro) * p_sf_micro[i]) / log2(nrow(tpm_micro)) 
+}
+
+# -----------------------------------------------------------------------------
+# Compute the Effectiveness
+eff_micro = mean(determinism_coeff_micro) - mean(degeneracy_coeff_micro)
+
+# Print the results
+print(paste("The expected value of the micro deterministic coefficient is", mean(determinism_coeff_micro)))
+
+print(paste("The expected value of the micro degeneracy coefficient is", mean(degeneracy_coeff_micro)))
+
+print(paste("The effectivenes of the microsystem is", eff_micro))
+
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Construct the gate matrix (LET off=0 and on=1)
+c_M = matrix(c(0.81, 0.09, 0, 1), nrow=2, ncol=2)
+rownames(c_M) <- c("0", "1")
+colnames(c_M) <- c("0", "1")
+
+c_M
+
+# ------------------------------------------------------------------------------
+# Create all the permutations
+## Define the inputs of each gate {alpha,beta}
+inputs = c(0, 1)
+
+## Permutations of the system {ABCD}
+permutations_macro = expand.grid(inputs, inputs)
+
+## Name the elements of the permutations
+colnames(permutations_macro) = c("alpha", "beta")
+rownames(permutations_macro) = c("00", "10", "01", "11")
+
+# ------------------------------------------------------------------------------
+# Create 16x16 0 matrix "tpm"
+tpm_macro = matrix(0, ncol=4, nrow=4)
+rownames(tpm_macro) = c("00", "10", "01", "11")
+colnames(tpm_macro) = c("00", "10", "01", "11")
+
+# ------------------------------------------------------------------------------
+# Do the for loop to calculate the tpm
+for (i in 1:4){                                      ### Rows of the tpm
+  for (j in 1:4){                                    ### Columns of the tpm
+    ## Get the string from state j and put it in t = 1
+    t_1 = paste(permutations_macro[j,], collapse='')
+    
+    ## Parse out the states from t=1 
+    alpha1 = substr(t_1, 1, 1)
+    beta1 = substr(t_1, 2, 2)
+    
+    ## Calculate the probabilities
+    c_alpha = c_M[alpha1, paste(permutations_macro[i, "beta"], collapse='')] ### alpha given beta of state i (t_0)
+    c_beta = c_M[beta1, paste(permutations_macro[i, "alpha"], collapse='')] ### beta given alphaof state i (t_0)
+    
+    ## tpm element calculation
+    tpm_macro[i, j] = c_alpha * c_beta
+  }
+  
+}
+
+# ------------------------------------------------------------------------------
+# Plot the image
+shades = colorRampPalette(c("white", "black"))(20)  ### Define the colors
+
+image(tpm_macro, zlim = c(0, 1), col=shades, axes=FALSE , xlab="t-1 states", ylab="t0 states", lwd=2) ### Create the image
+# ------------------------------------------------------------------------------
+# Calculate the determinism coefficients for the macro
+determinism_coeff_macro = rep(0,4)
+
+for (i in 1:nrow(tpm_macro)){
+  determinism_coeff_macro[i] = (rowSums(tpm_macro)[i]) * log2(nrow(tpm_macro) * (rowSums(tpm_macro)[i])) / log2(nrow(tpm_macro))         ### Here i use nrow(tpm) instead of just 16 to "generalize"
+}
+
+de = rep(0,4)
+
+#for (i in 1:nrow(tpm_macro)){
+  #ij_element = rep(0, 16)
+  #for (j in 1:ncol(tpm_macro)) {
+   # ij_element[j] = tpm_macro[i,j] * log2(nrow(tpm_macro)*tpm_macro[i,j])
+  #}
+  #determinism_coeff_macro[i] =  sum(ij_element)/log2(nrow(tpm_macro))         ### Here i use nrow(tpm) instead of just 16 to "generalize"
+#}
+
+determinism_coeff_macro = determinism_coeff_macro[!is.na(determinism_coeff_macro)]
+
+
+# ------------------------------------------------------------------------------
+# Calculate the degeneracy coefficients
+degeneracy_coeff_macro = rep(0,4)
+p_sf_macro = rep(0,4)
+
+## This loop calculates the unconditional probabilites of getting the state S_F
+for (j in 1:ncol(tpm_macro)){
+  p_sf_macro[j] = colSums(tpm_macro)[j]/ncol(tpm_macro)
+}
+
+## This loop calculates the degeneracy coefficients
+for (i in 1:nrow(tpm_macro)){
+  degeneracy_coeff_macro[i] = (rowSums(tpm_macro)[i]) * log2(nrow(tpm_macro) * p_sf_macro[i]) / log2(nrow(tpm_macro)) 
+}
+
+# -----------------------------------------------------------------------------
+# Compute the Effectiveness
+eff_macro = mean(determinism_coeff_macro) - mean(degeneracy_coeff_macro)
+
+# Print the results
+print(paste("The expected value of the macro deterministic coefficient is", mean(determinism_coeff_macro)))
+
+print(paste("The expected value of the macro degeneracy coefficient is", mean(degeneracy_coeff_macro)))
+
+print(paste("The effectivenes of the macrosystem is", eff_macro))
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Calculate the informational contribution of effectiveness
+I_eff = (eff_macro - eff_micro) * log2(4)
+
+(0.78 - 0.29) * log2(4)
+
+# Calculate the informational contribution of the repertoire size
+I_size = eff_micro * (log2(4) - log2(16))
+
+0.29 * (log2(4) - log2(16))
+
+# Calculate the causal emergence
+CE = I_eff + I_size
+
+0.98 - 0.58
+
+# Print results
+print(paste("The informational contribution of effectiveness is", I_eff))
+
+print(paste("The informational contribution of the repertoire size is", I_size))
+
+print(paste("The causal emergence of the system is", CE, "bits"))
+
+```
+
+
