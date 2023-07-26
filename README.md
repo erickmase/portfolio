@@ -16,5 +16,6 @@ Questions? Email me at:
 * [Opimization methods simulation study](https://github.com/erickmase/portfolio/blob/main/Simulation%20Study%20Optimization%20Methods.pdf)
 
 ## Data Analysis 
+* [When was the Golden Age of Videogames? - SQL](https://github.com/erickmase/portfolio/blob/main/When%20was%20the%20Golden%20Age%20of%20videogames.ipynb)
 
 ## Data Science
