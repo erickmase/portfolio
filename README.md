@@ -17,5 +17,6 @@ Questions? Email me at:
 
 ## Data Analysis 
 * [When was the Golden Age of Videogames? - SQL](https://github.com/erickmase/portfolio/blob/main/When%20was%20the%20Golden%20Age%20of%20videogames.ipynb)
+* [Analyzing Unicorn Companies - SQL](https://github.com/erickmase/portfolio/blob/main/Analyzing%20Unicorn%20Companies.ipynb)
 
 ## Data Science
