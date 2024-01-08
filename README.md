@@ -16,8 +16,6 @@ Questions? Email me at:
 
 ## Data Science
 
-## Quantitative Finance
-
 ## Mathematical Modelling 
 ### Probability Theory & Markov Chains
 * [Causal Emergence of a System - Markov Chain Modelling in R](https://github.com/erickmase/portfolio/blob/main/Causal%20Inference.Rmd)
@@ -28,3 +26,5 @@ Questions? Email me at:
 
 ## Physics
 * [GW170817: Neutron Star-Black Hole Merger - Data Analysis in Python](https://github.com/erickmase/portfolio/blob/main/GW170817%20Gravitational%20Waves%20Analysis%20.ipynb)
+
+## Quantitative Finance
