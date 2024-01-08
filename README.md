@@ -8,6 +8,7 @@ Questions? Email me at:
 ### SQL
 * [When was the Golden Age of Videogames?](https://github.com/erickmase/portfolio/blob/main/When%20was%20the%20Golden%20Age%20of%20videogames.ipynb)
 * [Analyzing Unicorn Companies](https://github.com/erickmase/portfolio/blob/main/Analyzing%20Unicorn%20Companies.ipynb)
+* [Analyzing Warehouses Sales & Net Revenue of Motorcycle Parts](https://github.com/erickmase/portfolio/blob/main/Analyzing%20Warehouses%20Sales%20%26%20Net%20Revenue%20of%20Motorcycle%20Parts.ipynb)
 
 ### Python
 * [Investigating Netflix Movies Duration Time Over the Years - Exploratory Analysis](https://github.com/erickmase/portfolio/blob/main/Investigating%20Netflix%20Movies%20-%20Exploratory%20Analysis.ipynb)
