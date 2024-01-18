@@ -14,6 +14,7 @@ Questions? Email me at:
 * [Investigating Netflix Movies Duration Time Over the Years - Exploratory Analysis](https://github.com/erickmase/portfolio/blob/main/Investigating%20Netflix%20Movies%20-%20Exploratory%20Analysis.ipynb)
 * [Exploratory Data Analysis of the World's Oldest Businesses](https://github.com/erickmase/portfolio/blob/main/Exploratory%20analysis%20of%20World's%20Oldest%20Businesses.ipynb)
 * [NYC SAT Test Scores Analysis](https://github.com/erickmase/portfolio/blob/main/NYC%20SAT%20Test%20Scores%20Analysis.ipynb)
+* [Visualizing the History of Noble Prize Winners](https://github.com/erickmase/portfolio/blob/main/Visualizing%20the%20History%20of%20Noble%20Prize%20Winners.ipynb)
 
 ## Data Science
 
