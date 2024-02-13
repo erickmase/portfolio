@@ -16,6 +16,7 @@ Questions? Email me at:
 * [NYC SAT Test Scores Analysis](https://github.com/erickmase/portfolio/blob/main/NYC%20SAT%20Test%20Scores%20Analysis.ipynb)
 * [Visualizing the History of Noble Prize Winners](https://github.com/erickmase/portfolio/blob/main/Visualizing%20the%20History%20of%20Noble%20Prize%20Winners.ipynb)
 * [Analyzing Crime in Los Angeles](https://github.com/erickmase/portfolio/blob/main/Analyzing%20Crime%20in%20Los%20Angeles.ipynb)
+* [Hypothesis Testing with Men's and Women's Soccer Matches](https://github.com/erickmase/portfolio/blob/main/Hypothesis%20Testing%20with%20Men's%20and%20Women's%20Soccer%20Matches.ipynb)
 
 ## Data Science
 
