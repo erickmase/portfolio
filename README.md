@@ -1,5 +1,5 @@
 # Erick Martinez Sevilla's portfolio
-Hi, welcome to my professional coding portfolio. I have worked in physics and math research in the past. From now on I will be focusing on data science/analysis projects.
+Hi, welcome to my professional coding portfolio. I am a self-driven applied mathematics and physics graduate with a foundation in research analysis and mathematical modeling. Proficient with programming languages such as Python, R, and SQL backed up by 3 years of experience, and currently pursuing CFA certification to enhance my financial expertise. I have worked as a research assistant in physics and mathematics. Currently working as a business data analyst intern at PLANITIEM, I am eager to commit to ongoing professional development in a financial or quantitative analyst role.
 
 Questions? Email me at:
 [erickmase520@gmail.com](mailto:erickmase520@gmail.com)
@@ -19,6 +19,8 @@ Questions? Email me at:
 * [Hypothesis Testing with Men's and Women's Soccer Matches](https://github.com/erickmase/portfolio/blob/main/Hypothesis%20Testing%20with%20Men's%20and%20Women's%20Soccer%20Matches.ipynb)
 
 ## Data Science
+### Python
+*[Customer Analytics - Preparing Data for Modeling](https://github.com/erickmase/portfolio/blob/main/Customer%20Analytics%20-%20Preparing%20Data%20for%20Modeling.ipynb)
 
 ## Mathematical Modelling 
 ### Probability Theory & Markov Chains
