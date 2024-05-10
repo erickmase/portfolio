@@ -20,7 +20,7 @@ Questions? Email me at:
 
 ## Data Science
 ### Python
-*[Customer Analytics - Preparing Data for Modeling](https://github.com/erickmase/portfolio/blob/main/Customer%20Analytics%20-%20Preparing%20Data%20for%20Modeling.ipynb)
+* [Customer Analytics - Preparing Data for Modeling](https://github.com/erickmase/portfolio/blob/main/Customer%20Analytics%20-%20Preparing%20Data%20for%20Modeling.ipynb)
 
 ## Mathematical Modelling 
 ### Probability Theory & Markov Chains
