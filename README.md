@@ -1,5 +1,5 @@
-# Erick Martinez Sevilla's portfolio
-Welcome to my professional coding portfolio. 
+Welcome to my professional coding portfolio.
+
 I am a quantitative-focused graduate student (York University) specializing in the intersection of stochastic modeling in financial engineering, climate systems, and nature risks in finance. My focus is to utilize my skills to develop and apply stochastic models and optimization techniques to address climate-related financial risks and contribute to the data-driven infrastructure of transition risks. I am also focusing on researching and designing frameworks for sustainable investment portfolios.
 
 My academic journey began by completing a Double Major Honors degree in Physics and Applied Mathematics. Currently, I am strengthening my education and acquiring new skills through a Master of Arts in Mathematics with a Probability stream, combined with a concurrent Diploma in Financial Engineering. Additionally, I am pursuing the CFA certification to enhance my expertise in quantitative finance and to bridge the theoretical aspects of my education with market practices.
